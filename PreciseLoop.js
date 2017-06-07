@@ -23,12 +23,10 @@ class PreciseLoop {
   
   set dt(val) {
     this.targetDt = val;
-    return this;
   }
   
   set FPS(val) {
     this.targetDt = 1000/val;
-    return this;
   }
   
   requestTick() {
@@ -59,15 +57,6 @@ class PreciseLoop {
   
   addOffset(t) {
     this.nextTick += t;
-  }
-  
-  setDt(dt) {
-    this.targetDt = dt;
-    return this;
-  }
-  
-  getDt() {
-    return this.targetDt;
   }
   
   start() {

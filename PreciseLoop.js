@@ -7,7 +7,6 @@ class PreciseLoop {
     this.tickId = 0;
     this.lastDt = 0;
     this.then = 0;
-    this.index = 0;
     this.requestCount = 0;
     this.requestTimeFactor = requestTimeFactor;
     this.skipMissed = skipMissed;
@@ -34,7 +33,6 @@ class PreciseLoop {
     const timeLeft = this.nextTick - now;
     this.requestCount += 1;
     if(timeLeft <= 0){
-      this.index += 1;
       this.lastDt = now - this.then;
       this.then = now;
       this.nextTick = this.nextTick + this.targetDt;
@@ -43,7 +41,7 @@ class PreciseLoop {
         this.nextTick = now + this.targetDt;
       }
       
-      this.onTick(this.lastDt, this.index, this.requestCount);
+      this.onTick(this.lastDt, this.targetDt, this.requestCount);
       
       const newTimeLeft = this.nextTick - now;
       const delay = Math.max(newTimeLeft * this.requestTimeFactor, 0);

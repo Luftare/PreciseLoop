@@ -1,5 +1,5 @@
 class PreciseLoop {
-  constructor({dt = 1000 / 60, onTick = function(){}, requestTimeFactor = 0.6, skipMissed = false}) {
+  constructor({dt = 1000 / 60, onTick = function(){}, requestTimeFactor = 0.6, skipMissed = false, autoStart = false}) {
     this.targetDt = dt;
     this.onTick = onTick;
     this.nextTick = 0;
@@ -10,6 +10,7 @@ class PreciseLoop {
     this.requestCount = 0;
     this.requestTimeFactor = requestTimeFactor;
     this.skipMissed = skipMissed;
+    if(autoStart) this.start();
   }
   
   get dt() {
